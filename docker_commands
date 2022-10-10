@@ -1,0 +1,32 @@
+## Docker commands used to build the application 
+# TODO: insert the docker build command
+
+docker build -t techtrends . 
+
+## Docker commands used to run the application
+# TODO: insert the docker run command
+
+docker run -d -p 7111:3111 techtrends
+
+## Docker commands used to get the application logs
+# TODO: insert the docker logs command
+
+docker logs 9d2575b9792b
+
+## Logs from the container running the TechTrends application
+# TODO: paste logs from the Docker container
+
+Thursday, 09/Sep/2021 at, 17:55:50 PM  * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+Thursday, 09/Sep/2021 at, 17:55:57 PM 172.17.0.1 - - [09/Sep/2021 17:55:57] "GET / HTTP/1.1" 200 -
+Thursday, 09/Sep/2021 at, 17:55:58 PM 172.17.0.1 - - [09/Sep/2021 17:55:58] "GET /favicon.ico HTTP/1.1" 404 -
+Thursday, 09/Sep/2021 at, 18:04:43 PM 172.17.0.1 - - [09/Sep/2021 18:04:43] "GET /metrics HTTP/1.1" 200 -
+Thursday, 09/Sep/2021 at, 18:04:51 PM 172.17.0.1 - - [09/Sep/2021 18:04:51] "GET /healthz HTTP/1.1" 200 -
+Thursday, 09/Sep/2021 at, 18:04:55 PM 172.17.0.1 - - [09/Sep/2021 18:04:55] "GET / HTTP/1.1" 200 -
+Thursday, 09/Sep/2021 at, 18:04:58 PM The "About Us" page is retrieved
+Thursday, 09/Sep/2021 at, 18:04:58 PM 172.17.0.1 - - [09/Sep/2021 18:04:58] "GET /about HTTP/1.1" 200 -
+Thursday, 09/Sep/2021 at, 18:05:01 PM 172.17.0.1 - - [09/Sep/2021 18:05:01] "GET /create HTTP/1.1" 200 -
+Thursday, 09/Sep/2021 at, 18:05:12 PM About girls' loveNew article was created
+Thursday, 09/Sep/2021 at, 18:05:12 PM 172.17.0.1 - - [09/Sep/2021 18:05:12] "POST /create HTTP/1.1" 302 -
+Thursday, 09/Sep/2021 at, 18:05:12 PM 172.17.0.1 - - [09/Sep/2021 18:05:12] "GET / HTTP/1.1" 200 -
+Thursday, 09/Sep/2021 at, 18:05:20 PM 404 Page Access Denied
+Thursday, 09/Sep/2021 at, 18:05:21 PM 172.17.0.1 - - [09/Sep/2021 18:05:21] "GET /9 HTTP/1.1" 404 -
