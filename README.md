@@ -49,12 +49,41 @@ Monday, 10/Oct/2022 at, 18:45:19 PM 172.17.0.1 - - [10/Oct/2022 18:45:19] "GET /
 ![](screenshots/ci-github-actions.png)
 ![](screenshots/ci-dockerhub.png)
 
-## Kubernetes Declarative Manifests
+## Kubernetes cluster deployment using vagrant box and k3s
 
 - run `vagrant up` in the directory that contains the vagrant file , The vagrant file has a command for automatically bootstrapping the kubernetes cluster using k3s
 - run `vagrant ssh` and use `sudo su` to become root and use kubectl commands
-- verify if th the kubernetes cluster is operational by evaluating the node status in the cluster to be up and running
+- verify if the kubernetes cluster is operational by evaluating the node status in the cluster to be up and running
 
 ## Here is a screenshot of k8s node :
 
 ![](screenshots/k8s-nodes.png)
+
+## kubernetes declarative manifests
+
+- Construct the yaml file the same as they are saved in the techtrends/kubernetes directory including Deployment, Namespace, and Service resources
+- Copy the files from the host machine to the vagrant guest where kubernetes cluster is up and running to do so you need to `cd techtrends` and install vagrant-scp plugin by running the command `vagrant plugin install vagrant-scp` on your host machine then you can copy the whole directory from host machine to vagrant guest by running the command `vagrant scp kubernetes /home/vagrant` on the host machine
+- on the ssh vagrant guest you can run `kubectl apply -f kubernetes/`
+- run the command `kubectl get all -n sandbox` you will get all the resources defined inside of the yaml files in kubernetes directory up and running just like the followin attached screenshot:
+
+![](screenshots/kubernetes-declarative-manifests.png)
+
+## Helm Charts
+
+- We use Helm template configration manager to parameterize the TechTrends manifests. We will build a helm chart to template and release the application to multiple environments as a result, you should have a collection of parametrized YAML manifests that will use an input values file to generate valid kubernetes object.
+- The YAML manifests are created and kept in the helm directory.
+
+## Continuous Delivery with ArgoCD
+
+- Deploy the TechTrends application automaically using ArgoCD
+- Check the online guide for [ArgoCD installation](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd)
+- After installing argocd and checking that all pods in argocd namespace are up by running the command `kubectl get po -n argocd` we need to use a NodePort service to access ArgoCD UI
+- create a yaml file named argocd-server-nodeport.yaml and save it in argocdNodePort directory in your project
+- Copy the file from your host machine to your vagrant guest machine by running `cd ~/techtrends/argocdNodePort` and then run the command `vagrant scp argocd-server-nodeport.yaml /home/vagrant`
+- After that you can run `kubectl apply -f argocd-server-nodeport.yaml` on your vagrant box to create the nodeport that allows you to access ArgoCD UI on your host machine by going to [https://192.168.56.4:30008](https://192.168.56.4:30008)
+- login credientials can be found in the [credientials guide]()
+- Here is a screen shot of argocd UI after logging in:
+
+  ![](screenshots/argocd-ui.png)
+
+-
