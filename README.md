@@ -68,7 +68,6 @@ Monday, 10/Oct/2022 at, 18:45:19 PM 172.17.0.1 - - [10/Oct/2022 18:45:19] "GET /
 
 ![](screenshots/kubernetes-declarative-manifests.png)
 
-
 ## Continuous Delivery with ArgoCD
 
 - Check the online guide for [ArgoCD installation](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd)
@@ -81,14 +80,20 @@ Monday, 10/Oct/2022 at, 18:45:19 PM 172.17.0.1 - - [10/Oct/2022 18:45:19] "GET /
 
   ![](screenshots/argocd-ui.png)
 
-
   ## Helm Charts
 
 - We use Helm template configration manager to parameterize the TechTrends manifests. We will build a helm chart to template and release the application to multiple environments as a result, We should have a collection of parametrized YAML manifests that will use an input values file to generate valid kubernetes object.
 - The YAML manifests are created and kept in the helm directory in this project.
 
-
 ## Releasing the Application to multiple Environment
-- 
 
+- After creating Helm chart and creating application CRD, now we can deploy the techtrends app to ArgoCd
+- copy the files in the techtrends/argocd directory by `cd techtrends` and `vagrant scp argocd /home/vagrant`
+- go to your vagrant terminal and run `kubectl apply -f argocd`
+- visit your argoCD UI and sync the application in different environment , the following screenshots shows healthy application in different environments(sandbox, staging and production).
 
+![Sandbox Environment](screenshots/ArgoCD-sandbox-environment.png)
+
+![Staging Environment](screenshots/ArgoCD-staging-environment.png)
+
+![Production Environment](screenshots/ArgoCD-production-environment.png)
