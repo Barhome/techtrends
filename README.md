@@ -68,22 +68,27 @@ Monday, 10/Oct/2022 at, 18:45:19 PM 172.17.0.1 - - [10/Oct/2022 18:45:19] "GET /
 
 ![](screenshots/kubernetes-declarative-manifests.png)
 
-## Helm Charts
-
-- We use Helm template configration manager to parameterize the TechTrends manifests. We will build a helm chart to template and release the application to multiple environments as a result, you should have a collection of parametrized YAML manifests that will use an input values file to generate valid kubernetes object.
-- The YAML manifests are created and kept in the helm directory.
 
 ## Continuous Delivery with ArgoCD
 
-- Deploy the TechTrends application automaically using ArgoCD
 - Check the online guide for [ArgoCD installation](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd)
 - After installing argocd and checking that all pods in argocd namespace are up by running the command `kubectl get po -n argocd` we need to use a NodePort service to access ArgoCD UI
 - create a yaml file named argocd-server-nodeport.yaml and save it in argocdNodePort directory in your project
 - Copy the file from your host machine to your vagrant guest machine by running `cd ~/techtrends/argocdNodePort` and then run the command `vagrant scp argocd-server-nodeport.yaml /home/vagrant`
 - After that you can run `kubectl apply -f argocd-server-nodeport.yaml` on your vagrant box to create the nodeport that allows you to access ArgoCD UI on your host machine by going to [https://192.168.56.4:30008](https://192.168.56.4:30008)
-- login credientials can be found in the [credientials guide]()
+- login credientials can be found in the [credientials guide](https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)
 - Here is a screen shot of argocd UI after logging in:
 
   ![](screenshots/argocd-ui.png)
 
--
+
+  ## Helm Charts
+
+- We use Helm template configration manager to parameterize the TechTrends manifests. We will build a helm chart to template and release the application to multiple environments as a result, We should have a collection of parametrized YAML manifests that will use an input values file to generate valid kubernetes object.
+- The YAML manifests are created and kept in the helm directory in this project.
+
+
+## Releasing the Application to multiple Environment
+- 
+
+
